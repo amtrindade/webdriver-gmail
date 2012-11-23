@@ -23,18 +23,7 @@ public class LoginTest {
 	@Test
 	public void loginTest() throws InterruptedException {
 
-		loginPage.login(driver);
-
-		for (int second = 0;; second++) {
-			if (second >= 60) fail("timeout");
-			try { if ("Nenhum e-mail novo.".equals(driver.findElement(By.cssSelector("td.TC")).getText())) 
-				break; 
-			} 
-			catch (Exception e)	{}
-			Thread.sleep(1000);
-		}
-
-		String MessageNothing = driver.findElement(By.cssSelector("td.TC")).getText();
+		String MessageNothing = loginPage.login(driver);	
 		assertEquals("Nenhum e-mail novo.",	MessageNothing);
 	}
 
