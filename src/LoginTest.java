@@ -21,7 +21,7 @@ public class LoginTest {
 	}
 
 	@Test
-	public void loginTest() throws InterruptedException {
+	public void shouldBeLoginGmail() throws InterruptedException {
 
 		loginPage.login(driver);
 
@@ -35,7 +35,7 @@ public class LoginTest {
 		}
 
 		String MessageNothing = driver.findElement(By.cssSelector("td.TC")).getText();
-		assertEquals("Nenhum e-mail novo.",	MessageNothing);
+		assertEquals("Should have done login gmail", "Nenhum e-mail novo.",	MessageNothing);
 	}
 
 	@After
