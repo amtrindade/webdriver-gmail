@@ -21,7 +21,7 @@ public class LoginTest {
 	}
 
 	@Test
-	public void shouldBeLoginGmail() throws InterruptedException {
+	public void testLoginGmail() throws InterruptedException {
 
 		loginPage.login(driver);
 
