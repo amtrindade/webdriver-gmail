@@ -27,7 +27,7 @@ public class LoginTest {
 	@Test
 	public void loginTest() throws Exception {
 
-		loginPage.login(driver);	
+		loginPage.login(driver, "cwi.teste1@gmail.com", "cwi.teste1");	
 		
 		for (int second = 0;; second++) {
 			if (second >= 60) fail("timeout");
@@ -39,15 +39,19 @@ public class LoginTest {
 		}
 
 		String MessageNothing =  driver.findElement(By.cssSelector("td.TC")).getText();		
-		assertEquals("Nenhum e-mail novo.",	MessageNothing);
+		assertEquals("Deveria ter realizado o login!", "Nenhum e-mail novo.", MessageNothing);
 	}
 	
 	@Test
 	public void shouldMessageLoginWrong() throws Exception {
 		
-		loginPage.loginWrongPassword(driver);	
+		loginPage.login(driver, "cwi.teste1@gmail.com", "teste");	
 		
-		assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Nome de usuário incorreto ou senha incorreta[\\s\\S]*$"));
+		//String MessageWrong = driver.findElement(By.cssSelector("id=errormsg_0_Passwd")).getText();
+		//assertEquals("Deveria ter exibido mensagem de erro do login!", 
+				//"Nome de usuário incorreto ou senha incorreta.", MessageWrong);
+		assertTrue("Deveria ser exibido mensagem de erro!", 
+				driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Nome de usuário incorreto ou senha incorreta[\\s\\S]*$"));		
 	}
 
 	@After
